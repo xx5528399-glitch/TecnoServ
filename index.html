@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tecnoserv | Mantenimiento en Sistemas Electrónicos</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #071b19;
+      color: white;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #0b2925;
+      padding: 15px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 15px #0008;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #35e0a1;
+    }
+
+    .logo span {
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: .3s;
+    }
+
+    nav a:hover {
+      color: #35e0a1;
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .inicio {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      padding: 60px 8%;
+      background:
+        linear-gradient(90deg, #061a18ed, #061a18a0),
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .contenido-inicio {
+      max-width: 650px;
+      animation: aparecer 1.2s ease;
+    }
+
+    .contenido-inicio h1 {
+      font-size: clamp(35px, 6vw, 60px);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .contenido-inicio h1 span {
+      color: #35e0a1;
+    }
+
+    .contenido-inicio p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    .boton {
+      display: inline-block;
+      padding: 13px 25px;
+      background: #35e0a1;
+      color: #06201b;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 7px;
+      transition: .3s;
+    }
+
+    .boton:hover {
+      background: white;
+      transform: translateY(-4px);
+    }
+
+    section {
+      padding: 75px 8%;
+    }
+
+    .titulo {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 15px;
+      color: #35e0a1;
+    }
+
+    .subtitulo {
+      text-align: center;
+      color: #c5d5d1;
+      margin-bottom: 40px;
+    }
+
+    .servicios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .tarjeta {
+      background: #10332e;
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid #23665a;
+      transition: .4s;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-9px);
+      box-shadow: 0 10px 25px #0007;
+      border-color: #35e0a1;
+    }
+
+    .tarjeta h3 {
+      color: #35e0a1;
+      margin-bottom: 12px;
+    }
+
+    .imagen-servicio {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .nosotros {
+      background: #0b2925;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      align-items: center;
+      gap: 35px;
+    }
+
+    .nosotros img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .nosotros h2 {
+      color: #35e0a1;
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .tabla-contenedor {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #10332e;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      border: 1px solid #28685c;
+      text-align: center;
+    }
+
+    th {
+      background: #16765c;
+      color: white;
+    }
+
+    tr:hover {
+      background: #19483e;
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .galeria img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: .4s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.04);
+    }
+
+    .contacto {
+      background: #0b2925;
+    }
+
+    .formulario {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 14px;
+      border: 1px solid #28685c;
+      border-radius: 7px;
+      background: #071b19;
+      color: white;
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .formulario button {
+      padding: 14px;
+      background: #35e0a1;
+      color: #06201b;
+      border: none;
+      border-radius: 7px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .formulario button:hover {
+      background: white;
+    }
+
+    .redes {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .redes h3 {
+      color: #35e0a1;
+      margin-bottom: 20px;
+    }
+
+    .redes a {
+      display: inline-block;
+      color: white;
+      background: #10332e;
+      border: 1px solid #35e0a1;
+      text-decoration: none;
+      margin: 7px;
+      padding: 11px 18px;
+      border-radius: 7px;
+      font-weight: bold;
+      transition: .3s;
+    }
+
+    .redes a:hover {
+      background: #35e0a1;
+      color: #06201b;
+      transform: translateY(-4px);
+    }
+
+    footer {
+      background: #04110f;
+      text-align: center;
+      padding: 25px;
+      color: #b9ccc6;
+    }
+
+    footer span {
+      color: #35e0a1;
+    }
+
+    .revelar {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: .8s;
+    }
+
+    .revelar.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background: #0b2925;
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+      }
+
+      nav.activo {
+        display: flex;
+      }
+
+      .inicio {
+        min-height: 75vh;
+      }
+
+      section {
+        padding: 55px 6%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo">TECNO<span>SERV</span></div>
+
+    <button class="menu-btn" onclick="menu()" aria-label="Abrir menú">
+      ☰
+    </button>
+
+    <nav id="navegacion">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#diagnostico">Diagnóstico</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- PORTADA -->
+  <section class="inicio" id="inicio">
+    <div class="contenido-inicio">
+      <h1>Soluciones en <span>Sistemas Electrónicos</span></h1>
+
+      <p>
+        En Tecnoserv ofrecemos mantenimiento, diagnóstico
+        y reparación de sistemas electrónicos con calidad,
+        responsabilidad y tecnología.
+      </p>
+
+      <a href="#servicios" class="boton">
+        Conoce nuestros servicios
+      </a>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <h2 class="titulo">Nuestros servicios</h2>
+    <p class="subtitulo">
+      Soluciones especializadas para tus equipos electrónicos.
+    </p>
+
+    <div class="servicios">
+
+      <div class="tarjeta revelar">
+        <img class="imagen-servicio"
+          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+          alt="Trabajo técnico en electrónica">
+        <h3>Mantenimiento preventivo</h3>
+        <p>
+          Revisión y limpieza de equipos para prevenir fallas
+          y mejorar su funcionamiento.
+        </p>
+      </div>
+
+      <div class="tarjeta revelar">
+        <img class="imagen-servicio"
+          src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80"
+          alt="Diagnóstico técnico">
+        <h3>Diagnóstico electrónico</h3>
+        <p>
+          Identificación de fallas mediante herramientas
+          y pruebas especializadas.
+        </p>
+      </div>
+
+      <div class="tarjeta revelar">
+        <img class="imagen-servicio"
+          src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+          alt="Circuito electrónico">
+        <h3>Reparación electrónica</h3>
+        <p>
+          Reparación de circuitos y componentes electrónicos
+          para recuperar su funcionamiento.
+        </p>
+      </div>
+
+      <div class="tarjeta revelar">
+        <img class="imagen-servicio"
+          src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80"
+          alt="Equipo de trabajo tecnológico">
+        <h3>Asesoría técnica</h3>
+        <p>
+          Orientación para el cuidado, uso y mantenimiento
+          de sistemas electrónicos.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section class="nosotros" id="nosotros">
+    <div>
+      <h2>¿Quiénes somos?</h2>
+      <p>
+        Tecnoserv es una empresa dedicada al mantenimiento
+        de sistemas electrónicos. Nuestro objetivo es brindar
+        soluciones eficientes mediante conocimientos técnicos,
+        innovación y atención de calidad.
+      </p>
+      <br>
+      <p>
+        Trabajamos con responsabilidad para ofrecer servicios
+        que contribuyan al buen funcionamiento y conservación
+        de los equipos electrónicos.
+      </p>
+    </div>
+
+    <img
+      src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=900&q=80"
+      alt="Personal trabajando en tecnología">
+  </section>
+
+  <!-- DIAGNÓSTICO -->
+  <section id="diagnostico">
+    <h2 class="titulo">Diagnóstico técnico</h2>
+    <p class="subtitulo">
+      Ejemplos de fallas comunes y posibles soluciones.
+    </p>
+
+    <div class="tabla-contenedor">
+      <table>
+        <tr>
+          <th>Falla</th>
+          <th>Posible causa</th>
+          <th>Solución</th>
+        </tr>
+
+        <tr>
+          <td>Equipo no enciende</td>
+          <td>Problema en la alimentación</td>
+          <td>Revisar fuente y conexiones</td>
+        </tr>
+
+        <tr>
+          <td>Sobrecalentamiento</td>
+          <td>Ventilación deficiente</td>
+          <td>Limpieza y revisión</td>
+        </tr>
+
+        <tr>
+          <td>Falla de circuito</td>
+          <td>Componente dañado</td>
+          <td>Diagnóstico y reparación</td>
+        </tr>
+
+        <tr>
+          <td>Funcionamiento irregular</td>
+          <td>Conexión defectuosa</td>
+          <td>Revisar conexiones</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria">
+    <h2 class="titulo">Galería tecnológica</h2>
+    <p class="subtitulo">
+      Tecnología, electrónica y mantenimiento especializado.
+    </p>
+
+    <div class="galeria">
+      <img
+        src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80"
+        alt="Trabajo de mantenimiento">
+
+      <img
+        src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
+        alt="Trabajo en equipo">
+
+      <img
+        src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80"
+        alt="Trabajo técnico">
+    </div>
+  </section>
+
+  <!-- CONTACTO Y REDES -->
+  <section class="contacto" id="contacto">
+    <h2 class="titulo">Contáctanos</h2>
+    <p class="subtitulo">
+      Envíanos tus datos y cuéntanos qué servicio necesitas.
+    </p>
+
+    <form class="formulario" onsubmit="enviarWhatsApp(event)">
+      <input type="text" id="nombre"
+        placeholder="Nombre completo" required>
+
+      <input type="email" id="correo"
+        placeholder="Correo electrónico" required>
+
+      <input type="text" id="servicio"
+        placeholder="Servicio que necesitas" required>
+
+      <textarea id="mensaje"
+        placeholder="Describe tu problema o consulta..."
+        required></textarea>
+
+      <button type="submit">
+        Enviar por WhatsApp
+      </button>
+    </form>
+
+    <!-- REDES SOCIALES -->
+    <div class="redes">
+      <h3>Síguenos en nuestras redes sociales</h3>
+
+      <a href="https://www.facebook.com/"
+         target="_blank" rel="noopener">
+        Facebook
+      </a>
+
+      <a href="https://www.instagram.com/"
+         target="_blank" rel="noopener">
+        Instagram
+      </a>
+
+      <a href="https://www.tiktok.com/"
+         target="_blank" rel="noopener">
+        TikTok
+      </a>
+
+      <a href="https://www.youtube.com/"
+         target="_blank" rel="noopener">
+        YouTube
+      </a>
+
+      <a href="https://chat.whatsapp.com/TUENLACE"
+         target="_blank" rel="noopener">
+        Comunidad de WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <p>
+      <span>TECNOserv</span> |
+      Mantenimiento en Sistemas Electrónicos
+    </p>
+
+    <p>
+      Proyecto académico | Todos los derechos reservados © 2026
+    </p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    // MENÚ PARA CELULARES
+    function menu() {
+      document.getElementById("navegacion")
+        .classList.toggle("activo");
+    }
+
+    // FORMULARIO DE WHATSAPP
+    function enviarWhatsApp(event) {
+      event.preventDefault();
+
+      const nombre =
+        document.getElementById("nombre").value;
+
+      const correo =
+        document.getElementById("correo").value;
+
+      const servicio =
+        document.getElementById("servicio").value;
+
+      const mensaje =
+        document.getElementById("mensaje").value;
+
+      // CAMBIA POR TU NÚMERO REAL
+      const telefono = "5210000000000";
+
+      const texto =
+        "Hola, soy " + nombre +
+        ". Mi correo es " + correo +
+        ". Servicio solicitado: " + servicio +
+        ". Mensaje: " + mensaje;
+
+      const url =
+        "https://wa.me/" + telefono +
+        "?text=" + encodeURIComponent(texto);
+
+      window.open(url, "_blank");
+    }
+
+    // ANIMACIONES AL DESPLAZARSE
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("visible");
+        }
+      });
+    });
+
+    document.querySelectorAll(".revelar").forEach((elemento) => {
+      observador.observe(elemento);
+    });
+
+  </script>
+
+</body>
+  </html>
+  
